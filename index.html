@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zordon Enterprise - HUB</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="zordon-wrapper">
+        <canvas id="zordon-canvas"></canvas>
+        <div id="subtitles">Haz clic para enlazar...</div>
+        
+        <div id="command-hud">
+            <span class="cmd-tag">HOME</span>
+            <span class="cmd-tag">MISION</span>
+            <span class="cmd-tag">SERVICIOS</span>
+            <span class="cmd-tag">CONTACTO</span>
+            <span class="cmd-tag">RELLENAR</span>
+            <span class="cmd-tag">ENVIAR</span>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section id="inicio" class="section">
+            <div class="glass-card">
+                <h1>NÚCLEO ACTIVO</h1>
+                <p>Esperando instrucciones, Agente Daniel.</p>
+            </div>
+        </section>
+
+        <section id="nosotros" class="section">
+            <div class="glass-card">
+                <h2>NUESTRA MISIÓN</h2>
+                <p>Proteger la red y expandir el conocimiento digital.</p>
+            </div>
+        </section>
+
+        <section id="servicios" class="section">
+            <div class="glass-card">
+                <h2>SERVICIOS</h2>
+                <p>IA | Ciberseguridad | Teletransportación cuantica de Datos</p>
+            </div>
+        </section>
+
+        <section id="contacto" class="section">
+            <div class="glass-card">
+                <h2 id="titulo-contacto">TERMINAL DE CONTACTO</h2>
+                <div id="form-container">
+                    <input type="text" id="campo-nombre" placeholder="ID de Usuario...">
+                    <input type="email" id="campo-email" placeholder="Email...">
+                    <button id="btn-enviar-falso">ENVIAR SEÑAL</button>
+                </div>
+            </div>
+        </section>
+
+        <footer id="developer-footer" class="section">
+            <div class="footer-hacker-card">
+                <div class="footer-line"></div>
+                <p class="role-tags">DESIGNED BY: DANIEL MARIN</p>
+                <p class="role-desc">PROGRAMADOR | ANALISTA DE SISTEMAS |  HACKER | CYBORG</p>
+                <p class="version">V 1.0.99 - ENCRYPTED SYSTEM</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

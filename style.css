@@ -1,0 +1,35 @@
+body { margin: 0; background: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+main { opacity: 0; visibility: hidden; transition: opacity 0.8s; }
+body.navegando main { opacity: 1; visibility: visible; }
+
+#zordon-wrapper {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 1000; text-align: center; pointer-events: none; transition: all 0.8s;
+}
+
+#zordon-wrapper.esquina { top: 20px; left: 85%; transform: translate(-50%, 0) scale(0.45); }
+#zordon-canvas { width: 300px; height: 300px; filter: drop-shadow(0 0 25px #00d4ff); }
+
+#subtitles {
+    background: rgba(0,0,0,0.9); color: #00ffff; padding: 12px;
+    border-radius: 15px; border: 1px solid #00d4ff; font-size: 1em; margin-top: 5px;
+}
+
+#command-hud { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.cmd-tag { font-size: 0.6em; color: #00d4ff; border: 1px solid #00d4ff55; padding: 4px 8px; border-radius: 4px; background: rgba(0, 212, 255, 0.1); }
+
+.section { min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+.glass-card { background: rgba(0, 212, 255, 0.05); border: 1px solid #00d4ff44; padding: 50px; border-radius: 30px; text-align: center; }
+
+#btn-enviar-falso { width: 100%; padding: 12px; background: #00d4ff; border: none; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+#btn-enviar-falso:hover { background: #fff; box-shadow: 0 0 15px #00d4ff; }
+
+input { width: 100%; margin: 5px 0; padding: 12px; background: #000; border: 1px solid #00d4ff; color: #00ffff; box-sizing: border-box; }
+
+/* FOOTER HACKER MEJORADO */
+.footer-hacker-card { text-align: center; border: 1px solid #00d4ff33; padding: 40px; background: rgba(0, 212, 255, 0.02); border-radius: 10px; }
+.footer-line { width: 60px; height: 2px; background: #00d4ff; margin: 0 auto 20px; }
+.role-tags { color: #00d4ff; font-weight: bold; font-size: 1.4em; margin-bottom: 5px; }
+.role-desc { font-family: monospace; color: #aaa; font-size: 0.9em; letter-spacing: 1px; }
+.version { font-size: 0.7em; color: #444; margin-top: 15px; }
