@@ -35,10 +35,10 @@ La idea central es escalar este sistema para que sea un **puente de comunicació
 ---
 
 ## 🔮 ROADMAP DE ESCALABILIDAD
-1.  **Fase 1 (Actual):** Interfaz de navegación y control de formularios por voz.
-2.  **Fase 2 (IA):** Integración con cerebro de IA para entender contexto (NLP) sin comandos rígidos.
-3.  **Fase 3 (Conector Universal):** Plugin para conectar a plataformas de pago, carritos de compra y dashboards de usuario.
-4.  **Fase 4 (Omnipresencia):** Implementación en cualquier web (Ecommerce, Blog, Web App) como asistente de control maestro.
+1.  **Fase 1 (Actual):** Interfaz de navegación y control de formularios por voz. ACTUAL
+2.  **Fase 2 (IA):** Integración con cerebro de IA para entender contexto (NLP) sin comandos rígidos. NO DEV
+3.  **Fase 3 (Conector Universal):** Plugin para conectar a plataformas de pago, carritos de compra y dashboards de usuario. NO DEV
+4.  **Fase 4 (Omnipresencia):** Implementación en cualquier web (Ecommerce, Blog, Web App) como asistente de control maestro. NO DEV
 
 ---
 
