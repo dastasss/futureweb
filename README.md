@@ -5,7 +5,7 @@
 ![Vision](https://img.shields.io/badge/FUTURE-AI_SCALABLE-green?style=for-the-badge)
 
 ## 🚀 LA VISIÓN: EL FUTURO DE LA WEB ES VOCAL
-Zordon no es solo CONTROLA una Landing Page; es el prototipo de un **Núcleo de Inteligencia Universal**. La arquitectura está diseñada para evolucionar de una interfaz de navegación a un **Agente de IA Autónomo** capaz de integrarse en cualquier ecosistema digital:
+Zordon no solo CONTROLA una Landing Page hoy; es el prototipo de un **Núcleo de Inteligencia Universal**. La arquitectura está diseñada para evolucionar de una interfaz de navegación a un **Agente de IA Autónomo** capaz de integrarse en cualquier ecosistema digital:
 <img width="1829" height="792" alt="Captura de pantalla 2026-02-25 144139" src="https://github.com/user-attachments/assets/42a1d5f5-8eed-4fed-b8f2-ba84a316e0c3" />
 
 * **E-commerce:** "Zordon, compra el último modelo de drones y envíalo a mi base."
