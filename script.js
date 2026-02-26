@@ -28,26 +28,61 @@ cargarVoces();
 // --- 3. INICIALIZAR ZORDON 3D ---
 function initZordon() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('zordon-canvas'), alpha: true, antialias: true });
+    camera = new THREE.PerspectiveCamera(45, 1, 0.1, 2000);
+    camera.position.set(0, 0, 10);
+
+    renderer = new THREE.WebGLRenderer({ 
+        canvas: document.getElementById('zordon-canvas'), 
+        alpha: true, 
+        antialias: true 
+    });
     renderer.setSize(300, 300);
-    const faceGroup = new THREE.Group();
-    head = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 3), new THREE.MeshBasicMaterial({ color: 0x00d4ff, wireframe: true, transparent: true, opacity: 0.3 }));
-    head.scale.set(1, 1.4, 1);
-    const eyeMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-    const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 8), eyeMat); eyeL.position.set(-0.35, 0.3, 0.8);
-    const eyeR = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 8), eyeMat); eyeR.position.set(0.35, 0.3, 0.8);
-    mouth = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.05, 0.1), eyeMat); mouth.position.set(0, -0.4, 0.9);
-    faceGroup.add(head, eyeL, eyeR, mouth);
-    scene.add(faceGroup); camera.position.z = 2.5;
+
+    const light1 = new THREE.AmbientLight(0xffffff, 1.5);
+    scene.add(light1);
+
+    const light2 = new THREE.DirectionalLight(0xffffff, 2);
+    light2.position.set(0, 5, 10);
+    scene.add(light2);
+
+    const loader = new THREE.GLTFLoader();
+    
+    loader.load('zordon.glb', function (gltf) {
+        head = gltf.scene;
+        
+        // Centrar el modelo
+        const box = new THREE.Box3().setFromObject(head);
+        const center = box.getCenter(new THREE.Vector3());
+        head.position.sub(center);
+        
+        // ESCALA BASE (Asegúrate que los 3 números sean iguales: 10, 10, 10)
+        head.scale.set(10, 10, 10); 
+        
+        scene.add(head);
+        console.log("Zordon cargado correctamente.");
+    }, undefined, function (error) {
+        console.error("Error cargando el modelo:", error);
+    });
+
     animate();
 }
 
+// 4. ANIMACIÓN (SÓLO PULSO DE VOZ, SIN ROTAR)
 function animate() {
     requestAnimationFrame(animate);
-    head.rotation.y += 0.005;
-    if(isTalking) mouth.scale.y = Math.sin(Date.now() * 0.03) * 6 + 1;
-    else mouth.scale.y = 1;
+    if (head) {
+        // Sin rotación: head.rotation.y no se toca
+
+        if (isTalking) {
+            // Pulso suave: escala base (10) + variacion pequeña (max 0.2)
+            let v = Math.abs(Math.sin(Date.now() * 0.01)) * 0.2; 
+            let s = 5 + v;
+            head.scale.set(s, s, s);
+        } else {
+            // Tamaño estático normal
+            head.scale.set(5, 5, 5);
+        }
+    }
     renderer.render(scene, camera);
 }
 
@@ -85,7 +120,7 @@ recognition.onresult = (event) => {
             document.getElementById('campo-email').value = "daniel@cyborg.net";
         });
     } 
-    // AQUÍ ESTÁ EL CAMBIO: Ahora acepta muchas variantes de "Enviar"
+    // acepta muchas variantes de "Enviar"
     else if (raw.includes("enviar") || raw.includes("manda") || raw.includes("señal") || raw.includes("envi") || raw.includes("listo") || raw.includes("transmi")) {
         ejecutarEnvio();
     }
