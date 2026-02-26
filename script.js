@@ -158,7 +158,7 @@ function ejecutarEnvio() {
         navegarA('developer-footer');
 
         setTimeout(() => {
-            hablar("Diseñado por Daniel Marín. Programador. Analista de Sistemas. Hacker. Cyborg.", () => {
+            hablar("ENVIADO...Diseñado por Daniel Marín. Programador. Analista de Sistemas. Hacker. Cyborg.", () => {
                 // RESET TOTAL DE MEMORIA
                 inputNombre.value = ""; 
                 inputEmail.value = "";
