@@ -70,31 +70,71 @@ function initZordon() {
 // 4. ANIMACIÓN (SÓLO PULSO DE VOZ, SIN ROTAR)
 function animate() {
     requestAnimationFrame(animate);
+
     if (head) {
-        // Sin rotación: head.rotation.y no se toca
 
         if (isTalking) {
-            // Pulso suave: escala base (10) + variacion pequeña (max 0.2)
-            let v = Math.abs(Math.sin(Date.now() * 0.01)) * 0.2; 
-            let s = 5 + v;
-            head.scale.set(s, s, s);
+            let t = Date.now() * 0.005;
+
+            // Pulso energía
+            let scalePulse = 5 + Math.sin(t * 3) * 0.15;
+            head.scale.set(scalePulse, scalePulse, scalePulse);
+
+            // Vibración leve vertical
+            head.position.y = Math.sin(t * 8) * 0.05;
+
+            // Glow dinámico
+            head.traverse((child) => {
+                if (child.isMesh && child.material) {
+                    child.material.emissive = new THREE.Color(0x00ffff);
+                    child.material.emissiveIntensity = 0.5 + Math.sin(t * 5) * 0.3;
+                }
+            });
+
         } else {
-            // Tamaño estático normal
+
             head.scale.set(5, 5, 5);
+            head.position.y = 0;
+
+            head.traverse((child) => {
+                if (child.isMesh && child.material) {
+                    child.material.emissiveIntensity = 0;
+                }
+            });
         }
     }
+
     renderer.render(scene, camera);
 }
 
 // --- 4. VOZ ROBÓTICA ---
 function hablar(texto, callback) {
+
     window.speechSynthesis.cancel();
+
     const msg = new SpeechSynthesisUtterance(texto);
-    const robovoz = synthVoices.find(v => v.lang.includes('es') && (v.name.includes('Google') || v.name.includes('Microsoft'))) || synthVoices[0];
+
+    const robovoz = synthVoices.find(v =>
+        v.lang.includes('es') &&
+        (v.name.includes('Google') || v.name.includes('Guy online'))
+    ) || synthVoices[0];
+
     if (robovoz) msg.voice = robovoz;
-    msg.pitch = 0.1; msg.rate = 0.8;
-    msg.onstart = () => { isTalking = true; };
-    msg.onend = () => { isTalking = false; if(callback) callback(); };
+
+    msg.pitch = 0.2;
+    msg.rate = 0.85;
+
+    msg.onstart = () => {
+        isTalking = true;
+        recognition.stop(); // 🔴 Detenemos escucha mientras habla
+    };
+
+    msg.onend = () => {
+        isTalking = false;
+        recognition.start(); // 🟢 Reiniciamos SIEMPRE al terminar
+        if (callback) callback();
+    };
+
     window.speechSynthesis.speak(msg);
     document.getElementById('subtitles').innerText = texto;
 }
@@ -112,7 +152,7 @@ recognition.onresult = (event) => {
     if (raw.includes("home") || raw.includes("inicio")) irAHome();
     else if (raw.includes("misión") || raw.includes("mision")) hablar("Protocolo misión iniciado.", () => navegarA('nosotros'));
     else if (raw.includes("servicios")) hablar("Cargando servicios.", () => navegarA('servicios'));
-    else if (raw.includes("contacto")) hablar("Terminal abierta.", () => navegarA('contacto'));
+    else if (raw.includes("contacto")) hablar("Terminal de contacto abierta.", () => navegarA('contacto'));
     else if (raw.includes("rellenar") || raw.includes("pon mis datos")) {
         hablar("Cargando datos.", () => {
             navegarA('contacto');
